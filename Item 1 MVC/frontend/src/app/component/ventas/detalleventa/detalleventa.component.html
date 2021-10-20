@@ -1,0 +1,17 @@
+<div *ngFor="let item of detalleVenta" class="card">
+  <div class="card-body">
+    <h5 class="card-title">Detalle de Venta</h5><hr>
+    <h6 class="card-subtitle">Cliente: {{ item.nombre }}</h6><br>
+    <h6 class="card-subtitle">Producto: {{ item.producto }}</h6><br>
+    <h6 class="card-subtitle mb-2 text-muted">Fecha de operacion: {{ item.fecha | date:'d/MM/yyyy h:mm a' }}</h6>
+    <p class="card-text">
+        Cantidad: {{ item.cantidad }} <br>
+        Descuento: {{ item.descuento }}%<br>
+        Iva: {{ item.iva }}%<br>
+        Subtotal: {{ item.subtotal }}<br>
+        Total: {{ item.total }}
+    </p>
+    <!-- <a href="#" class="card-link">Card link</a>
+    <a href="#" class="card-link">Another link</a> -->
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <hr />
+    <h1>Listado de Productos</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Fecha</th>
+          <th scope="col">Producto</th>
+          <th scope="col">Total</th>
+          <th scope="col">detalle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of listadoVentas">
+          <th scope="row">{{ item.venta_id }}</th>
+          <td>{{ item.fecha | date: "d/MM/yyyy h:mm a" }}</td>
+          <td>{{ item.nombre }}</td>
+          <td>{{ item.total }}</td>
+          <td>
+            <a routerLink="/ventas/edit/{{ item.venta_id }}">editar</a><br />
+            <a routerLink="/ventas/detalle/{{ item.venta_id }}">Ver</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

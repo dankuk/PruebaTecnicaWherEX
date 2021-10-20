@@ -1,0 +1,124 @@
+<div class="container">
+  <h1 *ngIf="isAddMode">Realizar Venta</h1>
+  <h1 *ngIf="!isAddMode">Modificar Venta</h1>
+  <form class="form-row" [formGroup]="uploadForm" (submit)="onSubmit()">
+    <div class="form-group col-7">
+      <label>Cliente</label>
+      <select
+        formControlName="nombrecliente"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': f.nombrecliente?.errors }"
+      >
+        <option *ngFor="let item of listClienteVenta" value="{{ item.id }}">
+          {{ item.nombre }}
+        </option>
+      </select>
+      <div *ngIf="f.nombrecliente?.errors" class="invalid-feedback">
+        <div *ngIf="f.nombrecliente?.errors?.required">
+          Cliente es obligatorio
+        </div>
+      </div>
+    </div>
+    <div class="form-group col-7">
+      <label>Producto</label>
+      <select
+        formControlName="nombreproducto"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': f.nombreproducto?.errors }"
+        (change)="selectProducto($event)"
+      >
+        <option *ngFor="let item of listProductosVenta" value="{{ item.id }}">
+          {{ item.nombre }}
+        </option>
+      </select>
+      <div *ngIf="f.nombreproducto?.errors" class="invalid-feedback">
+        <div *ngIf="f.nombreproducto?.errors?.required">
+          Producto es obligatorio
+        </div>
+      </div>
+    </div>
+    <div class="form-group col-7">
+      <label>Stock Disponible </label> {{ stockProductos }}<br />
+      <label>Precio Unitario </label> {{ precioProducto }}
+    </div>
+    <br />
+
+    <div class="form-group col-7">
+      <label>Cantidad</label>
+      <input
+        type="number"
+        formControlName="cantidad"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': f.cantidad.errors }"
+        (keyup)="onKeyPressCantidad($event)"
+        (change)="onKeyPressCantidad($event)"
+      />
+      <div *ngIf="f.cantidad?.errors" class="invalid-feedback">
+        <div *ngIf="f.cantidad.errors?.required">Cantidad es obligatorio</div>
+        <div *ngIf="f.cantidad.errors?.pattern">Caracter no valido</div>
+        <div *ngIf="f.cantidad.errors?.min">Rango entre 0 y 100</div>
+      </div>
+    </div>
+    <div class="form-group col-7">
+      <label>IVA</label>
+      <input
+        type="number"
+        formControlName="iva"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': f.iva.errors }"
+        (keyup)="onKeyPressIva($event)"
+        (change)="onKeyPressIva($event)"
+      />
+      <div *ngIf="f.iva?.errors" class="invalid-feedback">
+        <div *ngIf="f.iva.errors?.required">Valor es obligatorio</div>
+        <div *ngIf="f.iva.errors?.pattern">Caracter no valido</div>
+        <div *ngIf="f.iva.errors?.min">Rango entre 0 y 100</div>
+        <div *ngIf="f.iva.errors?.max">Rango entre 0 y 100</div>
+      </div>
+    </div>
+
+    <div class="form-group col-7">
+      <label>Descuento</label>
+      <input
+        type="number"
+        formControlName="descuento"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': f.descuento.errors }"
+        (keyup)="onKeyPressDescuento($event)"
+        (change)="onKeyPressDescuento($event)"
+      />
+      <div *ngIf="f.descuento?.errors" class="invalid-feedback">
+        <div *ngIf="f.descuento.errors?.required">Valor es obligatorio</div>
+        <div *ngIf="f.descuento.errors?.pattern">Caracter no valido</div>
+        <div *ngIf="f.descuento.errors?.min">Rango entre 0 y 100</div>
+        <div *ngIf="f.descuento.errors?.max">Rango entre 0 y 100</div>
+      </div>
+    </div>
+
+    <!-- <div class="form-group col-7">
+      <label>Subtotal</label>
+      <input
+        type="text"
+        formControlName="subtotal"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': f.subtotal.errors }"
+      />
+    </div>
+    <div class="form-group col-7">
+        <label>Total</label>
+        <input
+          type="text"
+          formControlName="total"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': f.total.errors }"
+        />
+      </div> -->
+
+    <div class="form-group col-7"><label>SubTotal: </label> {{ subtotal }}</div>
+    <div class="form-group col-7"><label>Total: </label> {{ total }}</div>
+
+    <div class="col">
+      <button type="submit" class="btn btn-primary">Guardar</button>
+    </div>
+  </form>
+</div>
