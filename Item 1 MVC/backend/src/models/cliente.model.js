@@ -7,14 +7,14 @@ var Cliente = function (cliente) {
 };
 
 Cliente.create = function (newEmp, result) {
-  console.log(newEmp);
-  console.log(result);
+  //console.log(newEmp);
+  //console.log(result);
   dbConn.query("INSERT INTO cliente set ?", newEmp, function (err, res) {
     if (err) {
-      console.log("error: ", err);
+      //console.log("error: ", err);
       result(err, null);
     } else {
-      console.log(res.insertId);
+      //console.log(res.insertId);
       result(null, res.insertId);
     }
   });
@@ -22,7 +22,7 @@ Cliente.create = function (newEmp, result) {
 Cliente.findById = function (id, result) {
   dbConn.query("Select * from cliente where id = ? ", id, function (err, res) {
     if (err) {
-      console.log("error: ", err);
+      //console.log("error: ", err);
       result(err, null);
     } else {
       result(null, res);
@@ -32,23 +32,22 @@ Cliente.findById = function (id, result) {
 Cliente.findAll = function (result) {
   dbConn.query("Select * from cliente", function (err, res) {
     if (err) {
-      console.log("error: ", err);
+      //console.log("error: ", err);
       result(null, err);
     } else {
-      console.log("cliente : ", res);
+      //console.log("cliente : ", res);
       result(null, res);
     }
   });
 };
 
-
 Cliente.getClientesVenta = function (result) {
   dbConn.query("Select * from cliente WHERE estado <> 0", function (err, res) {
     if (err) {
-      console.log("error: ", err);
+      //console.log("error: ", err);
       result(null, err);
     } else {
-      console.log("cliente : ", res);
+      //console.log("cliente : ", res);
       result(null, res);
     }
   });
@@ -60,7 +59,7 @@ Cliente.update = function (id, cliente, result) {
     [cliente.nombre, cliente.estado, id],
     function (err, res) {
       if (err) {
-        console.log("error: ", err);
+        //console.log("error: ", err);
         result(null, err);
       } else {
         result(null, res);
@@ -71,7 +70,7 @@ Cliente.update = function (id, cliente, result) {
 Cliente.delete = function (id, result) {
   dbConn.query("DELETE FROM cliente WHERE id = ?", [id], function (err, res) {
     if (err) {
-      console.log("error: ", err);
+      //console.log("error: ", err);
       result(null, err);
     } else {
       result(null, res);

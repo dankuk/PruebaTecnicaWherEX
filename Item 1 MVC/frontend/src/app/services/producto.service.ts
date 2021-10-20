@@ -29,9 +29,9 @@ export class ProductoService {
     );
   }
 
-  verificaStockById(producto_id: number, cantVenta: number): Observable<any> {
+  verificaStockById(producto_id: number, total: number): Observable<any> {
     return this.http.get<any>(
-      this.endPointUrl + environment.verificastockbyid + producto_id + "/" + cantVenta
+      this.endPointUrl + environment.verificastockbyid + producto_id + "/" + total
     );
   }
 

@@ -12,10 +12,10 @@ Producto.getProductos = function (result) {
     "SELECT * FROM producto WHERE cantidad > 0",
     function (err, res) {
       if (err) {
-        console.log("error: ", err);
+        //console.log("error: ", err);
         result(null, err);
       } else {
-        console.log("producto : ", res);
+        //console.log("producto : ", res);
         result(null, res);
       }
     }
@@ -25,10 +25,10 @@ Producto.getProductos = function (result) {
 Producto.create = function (newEmp, result) {
   dbConn.query("INSERT INTO producto set ?", newEmp, function (err, res) {
     if (err) {
-      console.log("error: ", err);
+      //console.log("error: ", err);
       result(err, null);
     } else {
-      console.log(res.insertId);
+      //console.log(res.insertId);
       result(null, res.insertId);
     }
   });
@@ -36,7 +36,7 @@ Producto.create = function (newEmp, result) {
 Producto.findById = function (id, result) {
   dbConn.query("Select * from producto where id = ? ", id, function (err, res) {
     if (err) {
-      console.log("error: ", err);
+      //console.log("error: ", err);
       result(err, null);
     } else {
       result(null, res);
@@ -46,19 +46,15 @@ Producto.findById = function (id, result) {
 
 Producto.verificaStockById = function (id, cant, result) {
   dbConn.query(
-    "Select cantidad from producto where id = ? and cantidad >= ? ",
-    [id, cant],
+    `UPDATE producto SET cantidad = ? WHERE id = ?`,
+    [cant, id],
     function (err, res) {
+      console.log(`UPDATE producto SET cantidad = ${id} WHERE id = ${cant}`)
       if (err) {
-        console.log("error: ", err);
+        //console.log("error: ", err);
         result(err, null);
       } else {
-        console.log(res);
-        if(res.length > 0){
-          result(null, true);
-        }else{
-          result(null, false);
-        }
+        result(null, res);
       }
     }
   );
@@ -67,10 +63,10 @@ Producto.verificaStockById = function (id, cant, result) {
 Producto.findAll = function (result) {
   dbConn.query("Select * from producto", function (err, res) {
     if (err) {
-      console.log("error: ", err);
+      //console.log("error: ", err);
       result(null, err);
     } else {
-      console.log("producto : ", res);
+      //console.log("producto : ", res);
       result(null, res);
     }
   });
@@ -81,7 +77,7 @@ Producto.update = function (id, producto, result) {
     [producto.nombre, producto.precio, producto.cantidad, id],
     function (err, res) {
       if (err) {
-        console.log("error: ", err);
+        //console.log("error: ", err);
         result(null, err);
       } else {
         result(null, res);
@@ -91,15 +87,15 @@ Producto.update = function (id, producto, result) {
 };
 
 Producto.downCantProducto = function (id, producto, result) {
-  console.log("downCantProducto");
-  console.log(producto);
-  console.log(`UPDATE producto SET cantidad=${producto.cantidad} WHERE id = ${id}`);
+  //console.log("downCantProducto");
+  //console.log(producto);
+  //console.log(`UPDATE producto SET cantidad=${producto.cantidad} WHERE id = ${id}`);
   dbConn.query(
     "UPDATE producto SET cantidad=? WHERE id = ?",
     [producto.cantidad, id],
     function (err, res) {
       if (err) {
-        console.log("error: ", err);
+        //console.log("error: ", err);
         result(null, err);
       } else {
         result(null, res);
@@ -112,7 +108,7 @@ Producto.downCantProducto = function (id, producto, result) {
 Producto.delete = function (id, result) {
   dbConn.query("DELETE FROM producto WHERE id = ?", [id], function (err, res) {
     if (err) {
-      console.log("error: ", err);
+      //console.log("error: ", err);
       result(null, err);
     } else {
       result(null, res);

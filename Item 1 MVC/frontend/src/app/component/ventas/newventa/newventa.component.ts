@@ -135,10 +135,12 @@ export class NewventaComponent implements OnInit {
 
   onKeyPressCantidad(event: any) {
     if (event.key !== 'Delete' && event.key !== 'Backspace') {
+      debugger;
       if (this.isAddMode) {
         if (event.target.value > 0) {
-          if (event.target.value <= this.stockProductos) {
+          if (event.target.value <= this.stockProductosCopia) {
             this.cantProductosVendidos = event.target.value;
+            this.stockProductos = this.stockProductosCopia - this.cantProductosVendidos;
             this.calcularTotales(
               this.cantProductosVendidos,
               this.iva,
@@ -146,13 +148,16 @@ export class NewventaComponent implements OnInit {
             );
           } else {
             alert('Excede la cantidad de stock disponible');
-            this.cantProductosVendidos = this.stockProductos;
+            this.cantProductosVendidos = this.stockProductosCopia;
+            this.stockProductos = 0;
             this.uploadForm.patchValue({
-              cantidad: this.stockProductos,
+              cantidad: this.stockProductosCopia,
             });
           }
         }
       } else {
+        
+
         if (event.target.value > 0) {
           let stockTotalModificacion =
             this.cantProductosVendidosCopia + this.stockProductosCopia;
@@ -177,10 +182,17 @@ export class NewventaComponent implements OnInit {
           }
         } else {
           alert('No puede establecer valor 0 en cantidad');
-          this.cantProductosVendidos = this.stockProductos;
-          this.uploadForm.patchValue({
-            cantidad: this.stockProductos,
-          });
+          if(this.stockProductos > 0){
+            this.cantProductosVendidos = this.stockProductos;
+            this.uploadForm.patchValue({
+              cantidad: this.stockProductos,
+            });
+          }else if(this.stockProductos <= 0){
+            this.uploadForm.patchValue({
+              cantidad: this.cantProductosVendidosCopia,
+            });
+          }        
+          
           this.calcularTotales(
             this.cantProductosVendidos,
             this.iva,
@@ -236,6 +248,7 @@ export class NewventaComponent implements OnInit {
   selectProducto(event: any) {
     this.productos.getProductoById(event.target.value).subscribe((data) => {
       this.stockProductos = data[0].cantidad;
+      this.stockProductosCopia = data[0].cantidad;
       this.precioProducto = data[0].precio;
     });
     this.subtotal = 0;
@@ -244,7 +257,6 @@ export class NewventaComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    // console.log(this.productos.verificaStockById(this.id, this.cantProductosVendidos));
     if (this.isAddMode) {
       if (this.uploadForm.valid) {
         let postForm = this.uploadForm.value;
@@ -271,11 +283,8 @@ export class NewventaComponent implements OnInit {
                 console.error('error en servicio');
               } else {
                 debugger;
-                let saldo = this.stockProductos - postForm.cantidad;
-                this.productos
-                  .downCantProducto(parseInt(postForm.nombreproducto), {
-                    cantidad: saldo,
-                  })
+                let saldo = this.stockProductosCopia - postForm.cantidad;
+                this.productos.downCantProducto(parseInt(postForm.nombreproducto), { cantidad: saldo })
                   .subscribe((data) => {
                     if (data.error) {
                       console.error('error en servicio');

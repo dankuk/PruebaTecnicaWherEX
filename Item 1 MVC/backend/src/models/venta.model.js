@@ -10,13 +10,13 @@ var Venta = function (venta) {
 
 Venta.create = function (newEmp, result) {
   try {
-    console.log(newEmp);
+    //console.log(newEmp);
     dbConn.query("INSERT INTO venta set ?", newEmp, function (err, res) {
       if (err) {
-        console.log("error: ", err);
+        //console.log("error: ", err);
         result(err, null);
       } else {
-        console.log(res.insertId);
+        //console.log(res.insertId);
         result(null, res.insertId);
         return;
       }
@@ -32,7 +32,7 @@ Venta.findById = function (id, result) {
     id,
     function (err, res) {
       if (err) {
-        console.log("error: ", err);
+        //console.log("error: ", err);
         result(err, null);
       } else {
         result(null, res);
@@ -45,10 +45,10 @@ Venta.findAll = function (result) {
     "Select * from venta, detalle, producto WHERE venta.id = detalle.venta_id AND detalle.producto_id = producto.id",
     function (err, res) {
       if (err) {
-        console.log("error: ", err);
+        //console.log("error: ", err);
         result(null, err);
       } else {
-        console.log("venta : ", res);
+        //console.log("venta : ", res);
         result(null, res);
       }
     }
@@ -60,7 +60,7 @@ Venta.update = function (id, venta, result) {
     [venta.fecha, venta.iva, venta.descuento, venta.total, id],
     function (err, res) {
       if (err) {
-        console.log("error: ", err);
+        //console.log("error: ", err);
         result(null, err);
       } else {
         result(null, res);
@@ -71,7 +71,7 @@ Venta.update = function (id, venta, result) {
 Venta.delete = function (id, result) {
   dbConn.query("DELETE FROM venta WHERE id = ?", [id], function (err, res) {
     if (err) {
-      console.log("error: ", err);
+      //console.log("error: ", err);
       result(null, err);
     } else {
       result(null, res);

@@ -33,6 +33,7 @@ export const environment = {
   getalldetalle: "getalldetalle/",
   newdetalle: "newdetalle/",
   finddetalleid: "finddetalleid/",
+  finddetalleventaid: "finddetalleventaid/",
   updatedetalleid: "updatedetalleid/",
   deletedetalleid: "deletedetalleid/",
 };

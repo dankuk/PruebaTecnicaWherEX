@@ -1,51 +1,55 @@
 <div class="container">
-    <h1 *ngIf="isAddMode">Crear Producto</h1>
-    <h1 *ngIf="!isAddMode">Editar Producto</h1>
-    <form class="form-row" [formGroup]="uploadForm" (submit)="onSubmit()">
-      <div class="form-group col-7">
-        <label>Nombre</label>
-        <input
-          type="text"
-          formControlName="nombre"
-          class="form-control"
-          [ngClass]="{ 'is-invalid': f.nombre.errors }"
-        />
-        <div *ngIf="f.nombre?.errors" class="invalid-feedback">
-          <div *ngIf="f.nombre.errors?.required">Nombre es obligatorio</div>
-          <div *ngIf="f.nombre.errors?.pattern">Caracter no valido</div>
-        </div>
+  <h1 *ngIf="isAddMode">Crear Producto</h1>
+  <h1 *ngIf="!isAddMode">Editar Producto</h1>
+  <form class="form-row" [formGroup]="uploadForm" (submit)="onSubmit()">
+    <div class="form-group col-7">
+      <label>Nombre</label>
+      <input
+        type="text"
+        formControlName="nombre"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': f.nombre.errors }"
+      />
+      <div *ngIf="f.nombre?.errors" class="invalid-feedback">
+        <div *ngIf="f.nombre.errors?.required">Nombre es obligatorio</div>
+        <div *ngIf="f.nombre.errors?.pattern">Caracter no valido</div>
       </div>
-      <div class="form-group col-7">
-        <label>Cantidad</label>
-        <input
-          type="number"
-          formControlName="cantidad"
-          class="form-control"
-          [ngClass]="{ 'is-invalid': f.cantidad.errors }"
-        />
-        <div *ngIf="f.cantidad?.errors" class="invalid-feedback">
-          <div *ngIf="f.cantidad.errors?.required">Nombre es obligatorio</div>
-          <div *ngIf="f.cantidad.errors?.pattern">Caracter no valido</div>
-        </div>
+    </div>
+    <div class="form-group col-7">
+      <label>Cantidad</label>
+      <input
+        type="number"
+        formControlName="cantidad"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': f.cantidad.errors }"
+      />
+      <div *ngIf="f.cantidad?.errors" class="invalid-feedback">
+        <div *ngIf="f.cantidad.errors?.required">Nombre es obligatorio</div>
+        <div *ngIf="f.cantidad.errors?.pattern">Caracter no valido</div>
       </div>
-      <div class="form-group col-7">
-        <label>Precio</label>
-        <input
-          type="number"
-          formControlName="precio"
-          class="form-control"
-          [ngClass]="{ 'is-invalid': f.precio.errors }"
-        />
-        <div *ngIf="f.precio?.errors" class="invalid-feedback">
-          <div *ngIf="f.precio.errors?.required">Nombre es obligatorio</div>
-          <div *ngIf="f.precio.errors?.pattern">Caracter no valido</div>
-        </div>
+    </div>
+    <div class="form-group col-7">
+      <label>Precio</label>
+      <input
+        type="number"
+        formControlName="precio"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': f.precio.errors }"
+      />
+      <div *ngIf="f.precio?.errors" class="invalid-feedback">
+        <div *ngIf="f.precio.errors?.required">Nombre es obligatorio</div>
+        <div *ngIf="f.precio.errors?.pattern">Caracter no valido</div>
       </div>
-  
-      
-      <div class="col">
+    </div>
+    <div class="row">
+      <div class="col-1">
         <button type="submit" class="btn btn-primary">Guardar</button>
       </div>
-    </form>
-  </div>
-  
+      <div class="col-1">
+        <a type="button" routerLink="/productos" class="btn btn-secondary"
+          >Volver</a
+        >
+      </div>
+    </div>
+  </form>
+</div>

@@ -34,4 +34,10 @@ export class VentaService {
       venta
     );
   }
+
+  deleteVenta(id: number): Observable<any> {
+    return this.http.delete<any>(
+      this.endPointUrl + environment.deleteventaid + id
+    );
+  }
 }

@@ -32,6 +32,7 @@ router.delete("/deleteventaid/:id", ventaController.delete);
 router.get("/getalldetalle", detalleController.findAll);
 router.post("/newdetalle", detalleController.create);
 router.get("/finddetalleid/:id", detalleController.findById);
+router.get("/finddetalleventaid/:id", detalleController.findByVentaId);
 router.put("/updatedetalleid/:id", detalleController.update);
 router.delete("/deletedetalleid/:id", detalleController.delete);
 

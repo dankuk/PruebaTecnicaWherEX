@@ -5,13 +5,20 @@
     <h6 class="card-subtitle">Producto: {{ item.producto }}</h6><br>
     <h6 class="card-subtitle mb-2 text-muted">Fecha de operacion: {{ item.fecha | date:'d/MM/yyyy h:mm a' }}</h6>
     <p class="card-text">
-        Cantidad: {{ item.cantidad }} <br>
+        Cantidad: {{ item.cant_venta }} <br>
         Descuento: {{ item.descuento }}%<br>
         Iva: {{ item.iva }}%<br>
-        Subtotal: {{ item.subtotal }}<br>
-        Total: {{ item.total }}
+        Subtotal: {{ item.subtotal | currency:'$':'symbol':'.0'}}<br>
+        Total: {{ item.total | currency:'$':'symbol':'.0' }}
     </p>
-    <!-- <a href="#" class="card-link">Card link</a>
-    <a href="#" class="card-link">Another link</a> -->
-  </div>
+
+    <div class="row">
+      <div class="col-1">
+        <a type="button" routerLink="/ventas" class="btn btn-secondary">Volver</a>
+      </div>
+      <!-- <div  class="col-1">
+        <a type="button" routerLink="/ventas/delete/{{ item.venta_id }}" class="btn btn-danger">Eliminar</a>
+      </div> -->
+    </div>
+    </div>
 </div>

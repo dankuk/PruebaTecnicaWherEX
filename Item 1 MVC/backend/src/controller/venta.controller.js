@@ -2,9 +2,9 @@
 const Venta = require("../models/venta.model");
 exports.findAll = function (req, res) {
   Venta.findAll(function (err, venta) {
-    console.log("Controlador");
+    //console.log("Controlador");
     if (err) res.send(err);
-    console.log("res", venta);
+    //console.log("res", venta);
     res.send(venta);
   });
 };

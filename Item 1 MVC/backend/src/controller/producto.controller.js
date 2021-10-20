@@ -3,18 +3,18 @@ const Producto = require("../models/producto.model");
 
 exports.getProductos = function (req, res) {
   Producto.getProductos(function (err, producto) {
-    console.log("Controlador");
+    //console.log("Controlador");
     if (err) res.send(err);
-    console.log("res", producto);
+    //console.log("res", producto);
     res.send(producto);
   });
 };
 
 exports.findAll = function (req, res) {
   Producto.findAll(function (err, producto) {
-    console.log("Controlador");
+    //console.log("Controlador");
     if (err) res.send(err);
-    console.log("res", producto);
+    //console.log("res", producto);
     res.send(producto);
   });
 };

@@ -17,23 +17,37 @@ export class DetalleService {
     return this.http.get<any>(this.endPointUrl + environment.getalldetalle);
   }
 
-  getDetalleById(cliente_id: number): Observable<any> {
+  getDetalleById(detalle_id: number): Observable<any> {
     return this.http.get<any>(
-      this.endPointUrl + environment.finddetalleid + cliente_id
+      this.endPointUrl + environment.finddetalleid + detalle_id
     );
   }
 
-  postDetalle(cliente: any): Observable<any> {
+  getDetalleByVentaId(detalle_id: number): Observable<any> {
+    return this.http.get<any>(
+      this.endPointUrl + environment.finddetalleventaid + detalle_id
+    );
+  }
+
+  deleteDetalle(detalle_id: number): Observable<any> {
+    return this.http.delete<any>(
+      this.endPointUrl + environment.deletedetalleid + detalle_id
+    );
+  }
+
+  
+
+  postDetalle(detalle: any): Observable<any> {
     return this.http.post<any>(
       this.endPointUrl + environment.newdetalle,
-      cliente
+      detalle
     );
   }
 
-  editDetalle(id: number, cliente: any): Observable<any> {
+  editDetalle(id: number, detalle: any): Observable<any> {
     return this.http.put<any>(
       this.endPointUrl + environment.updatedetalleid + id,
-      cliente
+      detalle
     );
   }
 }

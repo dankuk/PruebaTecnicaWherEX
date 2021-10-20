@@ -2,9 +2,9 @@
 const Detalle = require("../models/detalle.model");
 exports.findAll = function (req, res) {
   Detalle.findAll(function (err, detalle) {
-    console.log("Controlador");
+    //console.log("Controlador");
     if (err) res.send(err);
-    console.log("res", detalle);
+    //console.log("res", detalle);
     res.send(detalle);
   });
 };
@@ -30,6 +30,15 @@ exports.findById = function (req, res) {
     res.json(detalle);
   });
 };
+
+exports.findByVentaId = function (req, res) {
+  Detalle.findById(req.params.id, function (err, detalle) {
+    if (err) res.send(err);
+    res.json(detalle);
+  });
+};
+
+
 exports.update = function (req, res) {
   if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
     res.status(400).send({ error: true, message: "Campos incompletos" });

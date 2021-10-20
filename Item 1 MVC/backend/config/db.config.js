@@ -9,6 +9,6 @@ const dbConn = mysql.createConnection({
 });
 dbConn.connect(function(err) {
   if (err) throw err;
-  console.log("Conexión a BDD OK!");
+  //console.log("Conexión a BDD OK!");
 });
 module.exports = dbConn;

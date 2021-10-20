@@ -10,15 +10,15 @@ var Detalle = function (detalle) {
 };
 Detalle.create = function (newEmp, result) {
   try {
-    console.log("detalle insert");
-    console.log(newEmp);
+    //console.log("detalle insert");
+    //console.log(newEmp);
     dbConn.query("INSERT INTO detalle set ?", newEmp, function (err, res) {
       if (err) {
-        console.log("error: ", err);
+        //console.log("error: ", err);
         result(err, null);
       } else {
-        console.log(res.insertId);
-        console.log("INSERT INTO detalle set ?", newEmp);
+        //console.log(res.insertId);
+        //console.log("INSERT INTO detalle set ?", newEmp);
         result(null, res.insertId);
       }
     });
@@ -27,23 +27,36 @@ Detalle.create = function (newEmp, result) {
   }
   
 };
+
 Detalle.findById = function (id, result) {
   dbConn.query("Select * from detalle where id = ? ", id, function (err, res) {
     if (err) {
-      console.log("error: ", err);
+      //console.log("error: ", err);
       result(err, null);
     } else {
       result(null, res);
     }
   });
 };
+
+Detalle.findByVentaId = function (id, result) {
+  dbConn.query("Select * from detalle where venta_id = ? ", id, function (err, res) {
+    if (err) {
+      //console.log("error: ", err);
+      result(err, null);
+    } else {
+      result(null, res);
+    }
+  });
+};
+
 Detalle.findAll = function (result) {
   dbConn.query("Select * from detalle", function (err, res) {
     if (err) {
-      console.log("error: ", err);
+      //console.log("error: ", err);
       result(null, err);
     } else {
-      console.log("detalle : ", res);
+      //console.log("detalle : ", res);
       result(null, res);
     }
   });
@@ -54,19 +67,19 @@ Detalle.update = function (id, detalle, result) {
     [detalle.cantidad, detalle.producto_id, detalle.subtotal, detalle.cliente_id, id],
     function (err, res) {
       if (err) {
-        console.log("error: ", err);
+        //console.log("error: ", err);
         result(null, err);
       } else {
-        console.log(`UPDATE detalle SET cantidad= ${detalle.cantidad},producto_id=${detalle.producto_id}, subtotal=${detalle.subtotal}, cliente_id=${detalle.cliente_id} WHERE venta_id = ${id}`)
+        //console.log(`UPDATE detalle SET cantidad= ${detalle.cantidad},producto_id=${detalle.producto_id}, subtotal=${detalle.subtotal}, cliente_id=${detalle.cliente_id} WHERE venta_id = ${id}`)
         result(null, res);
       }
     }
   );
 };
 Detalle.delete = function (id, result) {
-  dbConn.query("DELETE FROM detalle WHERE id = ?", [id], function (err, res) {
+  dbConn.query("DELETE FROM detalle WHERE venta_id = ?", [id], function (err, res) {
     if (err) {
-      console.log("error: ", err);
+      //console.log("error: ", err);
       result(null, err);
     } else {
       result(null, res);

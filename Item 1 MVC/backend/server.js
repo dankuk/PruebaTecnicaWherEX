@@ -21,5 +21,5 @@ app.use((req, res, next) => {
 
 app.use("/api/v1/", wherex);
 app.listen(port, () => {
-  console.log(`Servidor escuchando el puerto: ${port}`);
+  //console.log(`Servidor escuchando el puerto: ${port}`);
 });

@@ -2,24 +2,24 @@
 const Cliente = require("../models/cliente.model");
 exports.findAll = function (req, res) {
   Cliente.findAll(function (err, cliente) {
-    console.log("Controlador");
+    //console.log("Controlador");
     if (err) res.send(err);
-    console.log("res", cliente);
+    //console.log("res", cliente);
     res.send(cliente);
   });
 };
 
 exports.getClienteVenta = function (req, res) {
   Cliente.getClientesVenta(function (err, cliente) {
-    console.log("Controlador");
+    //console.log("Controlador");
     if (err) res.send(err);
-    console.log("res", cliente);
+    //console.log("res", cliente);
     res.send(cliente);
   });
 };
 
 exports.create = function (req, res) {
-  console.log(req.body);
+  //console.log(req.body);
   const new_cliente = new Cliente(req.body);
   if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
     res.status(400).send({ error: true, message: "Campos incompletos" });
