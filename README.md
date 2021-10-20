@@ -1,4 +1,5 @@
 # Prueba Técnica
+
 ### Características
 
 - Proyecto desarrollado en NodeJS y Express para el BackEnd y Angular para el FrontEnd
@@ -10,9 +11,6 @@
 - Para Instalación Angular se debe ejecutar el comando siguiente en línea de consola:
 
 	- **npm install -g @angular/cli** (anteponer sudo para linux)
-
-
-
 
 **Table of Contents**
 
@@ -31,12 +29,12 @@
 
 #Item 1 - MVC
 
-###### Instalación de Base de datos
+### Instalación de Base de datos
 En un ambiente MySQL se debe ejecutar el script adjunto. Debe estar creada previamente la base de datos donde se ejecutará.
 
 ej) mysqldump -u [user] -p [database_name] > item1.sql
 
-###### Instalación de BackEnd (NodeJs)
+### Instalación de BackEnd (NodeJs)
 
 - Se debe copiar la carpeta BackEnd en la ruta C:\<ruta>. luego desde la consola de comandos se deben instalar los módulos, esto se realiza ejecutando: 
 
@@ -69,7 +67,7 @@ module.exports = dbConn;
 
 		- npm start
 
-###### Instalación de FrontEnd (Angular)
+### Instalación de FrontEnd (Angular)
 
 Se debe copiar la carpeta FrontEnd en la ruta C:\<ruta>. luego desde la consola de comandos se deben instalar los módulos, esto se realiza ejecutando: 
 
@@ -83,10 +81,3 @@ Luego para levantar el servicio solo debemos ejecutar:
 Además del script SQL con las consultas, se adjunta la base de datos implementada. solo se deben seguir los pasos del punto:
 
 > Instalación de Base de datos
-
-
-
-
-
-
-
